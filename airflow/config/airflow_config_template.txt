@@ -1,0 +1,128 @@
+# ============================================================================
+# Airflow Configuration Template
+# Save this as: $AIRFLOW_HOME/airflow.cfg (or .env)
+# ============================================================================
+
+[core]
+# The folder where airflow stores its logs
+base_log_folder = ./logs
+
+# The executor class that Airflow should use
+executor = LocalExecutor
+
+# The number of workers to run with sequentially_local_executor
+parallelism = 4
+max_active_tasks_per_dag = 3
+
+# The maximum number of task instances allowed to run concurrently in each pool
+max_active_runs_per_dag = 1
+
+# Dag files are processed every 'dag_dir_list_interval' seconds
+dag_dir_list_interval = 300
+
+# Number of seconds to wait between file-parsing attempts
+min_file_process_interval = 30
+
+# Hostname of the machine running Airflow
+hostname = localhost
+
+# Default dag owner just in case it is not specified/doesn't exist in the metadata database
+default_owner = data-team
+
+# Email address used in the 'from' field when sending emails
+default_view = tree
+
+# Expose the configuration file in the web server
+expose_config = False
+
+[database]
+# The SqlAlchemy connection string to the metadata database
+sql_alchemy_conn = sqlite:///./airflow.db
+
+# The encoding for the databases
+sql_engine_encoding = utf-8
+
+[webserver]
+# The base URL of your Airflow webserver
+base_url = http://localhost:8080
+
+# The port the webserver should listen on
+web_server_port = 8080
+
+# Number of seconds the webserver waits before killing off a subprocess
+web_server_worker_timeout = 120
+
+# Number of workers the Gunicorn webserver should handle
+workers = 1
+
+# Number of worker threads each worker process should have
+worker_threads = 2
+
+# The maximum age of log files in days
+log_file_retention_days = 30
+
+# Expose the configuration file in the web server
+expose_config = False
+
+[scheduler]
+# Number of seconds to wait between heartbeats when running jobs
+scheduler_heartbeat_sec = 5
+
+# Number of seconds after which a DAG-level SLA is considered missed
+dag_sla_miss_callback_log_finalize = False
+
+# Statsd (influxdb) config
+statsd_on = False
+
+[logging]
+# Log format for standard logging
+log_format = [%(asctime)s] %(levelname)s - %(message)s
+
+# Simple log format for tasks
+simple_log_format = %(message)s
+
+# Log level
+logging_level = INFO
+
+[smtp]
+# SMTP mail server for Airflow alerts
+smtp_host = localhost
+smtp_port = 587
+smtp_starttls = True
+smtp_ssl = False
+smtp_user = 
+smtp_password = 
+smtp_mail_from = airflow@example.com
+
+[email]
+# Email backend used by Airflow for sending emails
+email_backend = airflow.providers.email.backends.smtp.SmtpEmail
+
+[AWS]
+# AWS Credentials (use IAM roles in production)
+# Do not hardcode credentials here!
+
+[snowflake]
+# Snowflake connector settings (optional)
+# Credentials should be managed via Airflow connections
+
+# ============================================================================
+# Environment Variables Configuration
+# Use these instead of hardcoding in airflow.cfg
+# ============================================================================
+
+# AIRFLOW_HOME=/path/to/airflow
+# AIRFLOW__CORE__EXECUTOR=LocalExecutor
+# AIRFLOW__CORE__SQL_ALCHEMY_CONN=sqlite:///./airflow.db
+# AIRFLOW__CORE__LOAD_EXAMPLES=False
+# AIRFLOW__CORE__UNIT_TEST_MODE=False
+# AIRFLOW__WEBSERVER__BASE_URL=http://localhost:8080
+# AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
+
+# COVID Pipeline Variables
+# COVID_S3_BUCKET=covid-data-bucket
+# COVID_S3_PREFIX=covid-data
+# SNOWFLAKE_DATABASE=COVID_DB
+# SNOWFLAKE_SCHEMA=RAW
+# SNOWFLAKE_WAREHOUSE=COMPUTE_WH
+# DBT_PROJECT_DIR=/path/to/covid_project

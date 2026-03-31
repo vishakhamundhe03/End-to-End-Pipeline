@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw COVID data loaded in Snowflake.
+    database: "{{ env_var('DBT_SNOWFLAKE_DATABASE', 'COVID_DB') }}"
+    schema: "{{ env_var('DBT_SNOWFLAKE_SCHEMA', 'RAW') }}"
+    tables:
+      - name: covid_data
+        description: Daily COVID observations by location.

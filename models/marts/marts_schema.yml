@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: fact_covid
+    description: Daily COVID fact table at date-country-province grain.
+    columns:
+      - name: observation_date
+        data_tests:
+          - not_null
+      - name: country
+        data_tests:
+          - not_null
+      - name: province
+        data_tests:
+          - not_null
+      - name: confirmed_cases
+        data_tests:
+          - not_null
+      - name: death_cases
+        data_tests:
+          - not_null
+      - name: recovered_cases
+        data_tests:
+          - not_null
+
+  - name: country_covid
+    description: Country-level aggregated COVID metrics.
+    columns:
+      - name: country
+        data_tests:
+          - unique
+          - not_null
+      - name: latest_observation_date
+        data_tests:
+          - not_null

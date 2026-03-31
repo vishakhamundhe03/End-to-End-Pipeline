@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_covid_data
+    description: Cleaned and standardized raw COVID data.
+    columns:
+      - name: source_row_id
+        data_tests:
+          - unique
+          - not_null
+      - name: observation_date
+        data_tests:
+          - not_null
+      - name: country
+        data_tests:
+          - not_null
