@@ -1,5 +1,4 @@
 End-to-End Data Engineering Pipeline: COVID-19 Analytics
-
 Overview
 This project implements a production-style end-to-end data pipeline to process and analyze COVID-19 data.
 It demonstrates how raw data is ingested, cleaned, transformed, validated, and visualized using modern data engineering tools.
@@ -137,6 +136,27 @@ Load tables:
 fact_covid
 country_covid
 
+Reproducibility
+Fully modular dbt project
+Airflow DAG for automation
+Configurable environment
 
+Future Improvements
+Incremental dbt models
+Real-time streaming pipeline
+CI/CD integration
+Cloud deployment
 
+Conclusion
+This project demonstrates a complete modern data engineering pipeline:
+Data Lake → Data Warehouse → Transformation → BI
+Automated batch processing
+Data quality validation
+Scalable architecture
+
+Author
+Built as part of a data engineering project demonstrating real-world pipeline design and implementation.
+        ↓
+
+dbt (Staging → Fact → Mart Models)
 
